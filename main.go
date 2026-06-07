@@ -1,9 +1,11 @@
 package main
 
 import (
-	bufferconsumer "ffmpegCompress/bufferConsumer"
-	"ffmpegCompress/execit"
 	"fmt"
+
+	"github.com/SumukhaS291299/Open-Media-Archive/execit"
+
+	bufferconsumer "github.com/SumukhaS291299/Open-Media-Archive/bufferConsumer"
 )
 
 func main() {

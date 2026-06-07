@@ -1,6 +1,6 @@
 package bufferconsumer
 
-import "ffmpegCompress/commons"
+import "github.com/SumukhaS291299/Open-Media-Archive/commons"
 
 type FfprobeStreamsPoller struct {
 	ProbeStreams *commons.FfprobeStreams

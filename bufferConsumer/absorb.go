@@ -2,10 +2,11 @@ package bufferconsumer
 
 import (
 	"encoding/json"
-	"ffmpegCompress/execit"
 	"fmt"
 	"strings"
 	"sync"
+
+	"github.com/SumukhaS291299/Open-Media-Archive/execit"
 )
 
 // Read the output based on the command run
