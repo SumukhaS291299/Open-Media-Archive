@@ -1,4 +1,10 @@
 words = [
+    "Ffprobe",
+    "bufferconsumer",
     "execit",
+    "iobuff",
+    "iobuffs",
     "omitzero",
+    "stderrbytes",
+    "stdoutbytes",
 ]

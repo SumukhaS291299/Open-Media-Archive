@@ -1,22 +1,36 @@
 package main
 
 import (
+	bufferconsumer "ffmpegCompress/bufferConsumer"
 	"ffmpegCompress/execit"
 	"fmt"
 )
 
 func main() {
-	out, err := execit.RunCmd(4, []string{
-		"Start-Sleep -Seconds 1; Write-Output 'Finished 1'",
-		"Start-Sleep -Seconds 2; Write-Output 'Finished 2'",
-		"Start-Sleep -Seconds 3; Write-Output 'Finished 3'",
-		"Start-Sleep -Seconds 4; Write-Output 'Finished 4'",
+	stringout, err := execit.RunCmd(5, []string{
+		"ffmpeg -version",
+		"ffprobe -version",
+		"Start-Sleep -Seconds 10; Write-Output 'Finished 10 seconds sleep'",
+		"ls",
+		"pwd",
 	})
 	if err != nil {
 		fmt.Println(err)
 	}
-	for _, op := range out {
-		fmt.Println(string(op.Stdout))
-		fmt.Println(string(op.Stderr))
+	stringbuffout := &bufferconsumer.StringStreamsPoller{}
+	stringbuffout.Absorb(stringout)
+
+	out, err := execit.RunCmd(3, []string{
+		"ffprobe -v error -print_format json -show_streams 'path\\to\\media1'",
+		"ffprobe -v error -print_format json -show_streams 'path\\to\\media2'",
+		"ffprobe -v error -print_format json -show_streams 'path\\to\\media3'",
+		// "curl -L -o test.mp4 https://download.blender.org/peach/bigbuckbunny_movies/big_buck_bunny_1080p_h264.mov && ffprobe -v error -print_format json -show_streams test.mp4",
+	})
+	if err != nil {
+		fmt.Println(err)
 	}
+
+	probe := &bufferconsumer.FfprobeStreamsPoller{}
+	probe.Absorb(out)
+
 }

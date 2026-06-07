@@ -1,6 +1,6 @@
 package commons
 
-type T struct {
+type FfprobeStreams struct {
 	Streams []struct {
 		AvgFrameRate       string `json:"avg_frame_rate,omitzero"`
 		BitRate            string `json:"bit_rate,omitzero"`
